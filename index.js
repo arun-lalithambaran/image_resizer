@@ -25,6 +25,13 @@ fs.readdir(inputPath, (err, files) => {
                     console.log(`Success : ${count}, Failed : ${errorCount.length}, Skipped : ${skippedCount.length}`);
                     console.log('Failed items : ', errorCount);
                     console.log('Skipped items : ', skippedCount);
+                    let outputLog = {
+                        skippedFiles: skippedCount,
+                        failedFiles: errorCount
+                    }
+                    fs.writeFile('./output_log.json', JSON.stringify(outputLog), err => {
+                        console.log('output_log.json created....');
+                    })
                 }
             })
         } else {
@@ -47,13 +54,3 @@ function resizeImage(filename) {
         });
     })
 }
-
-// if(files.length) {
-//     let i = 0;
-//     resizeImage(files[i]).then(() => {
-//         i++;
-//         if(i < files.length) {
-//             resizeImage(files[i]);
-//         }
-//     })
-// }

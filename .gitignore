@@ -1,3 +1,4 @@
-./node_modules
-./output
-./target
+/node_modules
+/output
+/target
+/output_log.json
